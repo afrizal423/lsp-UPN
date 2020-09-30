@@ -8,37 +8,13 @@
         <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Custom styles for this template -->
-        <!-- <link href="assets/css/shop-homepage.css" rel="stylesheet"> -->
+        <link href="assets/css/login.css" rel="stylesheet">
 
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
             integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
             crossorigin="anonymous"/>
-        <style>
-            .login-form {
-                width: 340px;
-                margin: 50px auto;
-            }
-            .login-form form {
-                margin-bottom: 15px;
-                background: #f7f7f7;
-                box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
-                padding: 30px;
-            }
-            .login-form h2 {
-                margin: 0 0 15px;
-            }
-            .btn,
-            .form-control {
-                min-height: 38px;
-                border-radius: 2px;
-            }
-            .btn {
-                font-size: 15px;
-                font-weight: bold;
-            }
-        </style>
     </head>
     <body>
         <!-- Navigation -->
