@@ -20,11 +20,20 @@
     <body>
         <?php
         require_once('page/navbar.php');
+        require_once('prosesregistrasi.php');
         ?>
         <div class="signup-form">
-            <form action="/examples/actions/confirmation.php" method="post">
+            <form method="post">
                 <h2>Registrasi</h2>
                 <p class="hint-text">Form Registrasi Akun Baru.</p>
+                <div class="form-group">
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="nama"
+                        placeholder="Nama"
+                        required="required">
+                </div>
                 <div class="form-group">
                     <input
                         type="text"
@@ -74,7 +83,7 @@
                         class="form-control"
                         id="exampleFormControlTextarea1"
                         rows="3"
-                        placeholder="Alamat"></textarea>
+                        placeholder="Alamat" name="alamat"></textarea>
                 </div>
                 <div class="form-group">
                     <input
@@ -94,15 +103,7 @@
                 </div>
                 
                 <div class="form-group">
-                    <label class="checkbox-inline"><input type="checkbox" required="required">
-                        I accept the
-                        <a href="#">Terms of Use</a>
-                        &amp;
-                        <a href="#">Privacy Policy</a>
-                    </label>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-success btn-lg btn-block">Register Now</button>
+                    <button type="submit" class="btn btn-success btn-lg btn-block">Register</button>
                 </div>
             </form>
             <div class="text-center">Sudah punya akun?

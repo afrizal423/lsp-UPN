@@ -18,6 +18,9 @@
     </head>
     <body>
         <!-- Navigation -->
+        <?php 
+        require_once('proseslogin.php')
+        ?>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="#">OSS LSP</a>
@@ -53,21 +56,23 @@
         </nav>
 
         <div class="login-form">
-            <form action="/examples/actions/confirmation.php" method="post">
+            <form method="post">
                 <h2 class="text-center">Log in</h2>
                 <div class="form-group">
                     <input
                         type="text"
                         class="form-control"
                         placeholder="Username"
-                        required="required">
+                        required="required"
+                        name="username">
                 </div>
                 <div class="form-group">
                     <input
                         type="password"
                         class="form-control"
                         placeholder="Password"
-                        required="required">
+                        required="required"
+                        name="password">
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-block">Log in</button>
