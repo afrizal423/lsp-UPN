@@ -38,6 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $_SESSION['client']=$username;
                     // deklarasikan status diberi login untuk dicek nanti apakah true or false
                     $_SESSION['status'] = "login";
+                    $_SESSION['level'] = "client";
                     // akan memunculkan alert
                     echo '<script language="javascript">alert("Anda berhasil Login !"); document.location="/";</script>';
                 } else {
@@ -55,6 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['admin']=$username;
             // deklarasikan status diberi login untuk dicek nanti apakah true or false
             $_SESSION['status'] = "login";
+            $_SESSION['level'] = "admin";
             // akan memunculkan alert
             echo '<script language="javascript">alert("Anda berhasil Login !"); document.location="admin/index.php";</script>';
         } else {

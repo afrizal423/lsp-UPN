@@ -2,6 +2,7 @@
 include '../../config/db.php';
 $db = new database();
 $koneksi = $db->koneksi();
+$db->gateAdmin();
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $id = $_GET['id'];
     $data = mysqli_query($koneksi,"select * from kategori_barang where id_kat_barang='$id'");

@@ -1,3 +1,9 @@
+<?php
+include '../config/db.php';
+$db = new database();
+$db->gateAdmin();
+$koneksi = $db->koneksi();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
