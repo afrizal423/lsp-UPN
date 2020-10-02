@@ -26,6 +26,8 @@ if (!$_GET['id'] && !$_GET['aksi'] == 'edit') {
 
         <!-- Custom styles for this template -->
         <link href="../assets/css/shop-homepage.css" rel="stylesheet">
+        <script src="../assets/ckeditor/ckeditor.js"></script>
+
 
         <link
             rel="../stylesheet"
@@ -110,6 +112,10 @@ if (!$_GET['id'] && !$_GET['aksi'] == 'edit') {
                                 <small id="fakultasHelp" class="form-text text-muted">Masukkan Nama Barang.</small>
                             </div>
                             <div class="form-group">
+                                <label for="editor1">Deskripsi Barang</label>
+                                <textarea class="form-control" name="deskripsi_barang" id="editor1"><?php echo $db->getEdit($_GET['id'])->deskripsi_barang ?></textarea>
+                            </div>
+                            <div class="form-group">
                                 <label for="stok_barang">Stok Barang</label>
                                 <input
                                     type="number"
@@ -162,6 +168,11 @@ if (!$_GET['id'] && !$_GET['aksi'] == 'edit') {
         <!-- Bootstrap core JavaScript -->
         <script src="../assets/vendor/jquery/jquery.min.js"></script>
         <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script>
+            // Replace the <textarea id="editor1"> with a CKEditor 4 instance, using default
+            // configuration.
+            CKEDITOR.replace('editor1');
+        </script>
 
     </body>
 

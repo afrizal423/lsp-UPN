@@ -22,6 +22,7 @@ $koneksi = $db->koneksi();
 
         <!-- Custom styles for this template -->
         <link href="../assets/css/shop-homepage.css" rel="stylesheet">
+        <script src="../assets/ckeditor/ckeditor.js"></script>
 
         <link
             rel="../stylesheet"
@@ -87,22 +88,25 @@ $koneksi = $db->koneksi();
                         if(isset($_GET['alert'])){
                             if($_GET['alert']=="gagal_ukuran"){
                                 ?>
-                                <div class="alert alert-warning">
-                                    <strong>Warning!</strong> Ukuran File Terlalu Besar
-                                </div>
-                                <?php
+                        <div class="alert alert-warning">
+                            <strong>Warning!</strong>
+                            Ukuran File Terlalu Besar
+                        </div>
+                    <?php
                             }elseif ($_GET['alert']=="gagal_ektensi") {
                                 ?>
-                                <div class="alert alert-warning">
-                                    <strong>Warning!</strong> Ekstensi Gambar Tidak Diperbolehkan
-                                </div>
-                                <?php
+                        <div class="alert alert-warning">
+                            <strong>Warning!</strong>
+                            Ekstensi Gambar Tidak Diperbolehkan
+                        </div>
+                    <?php
                             }elseif ($_GET['alert']=="simpan") {
                                 ?>
-                                <div class="alert alert-success">
-                                    <strong>Success!</strong> Data Berhasil Disimpan
-                                </div>
-                                <?php
+                        <div class="alert alert-success">
+                            <strong>Success!</strong>
+                            Data Berhasil Disimpan
+                        </div>
+                        <?php
                             }				
                         }
                         ?>
@@ -137,15 +141,23 @@ $koneksi = $db->koneksi();
                                     <td><?php echo $x['stok_barang']; ?></td>
                                     <td><?php echo $x['harga_barang']; ?></td>
                                     <td>
-                                    <?php 
+                                        <?php 
                                     if ($x['foto_barang']) {                                    
                                     ?>
-                                    <img src="../assets/img/<?php echo $x['foto_barang'];?>" alt="" width="150" class="img-responsive">
+                                        <img
+                                            src="../assets/img/<?php echo $x['foto_barang'];?>"
+                                            alt=""
+                                            width="150"
+                                            class="img-responsive">
                                     </td>
                                     <?php } ?>
                                     <td>
-                                    <a href="barangEdit.php?id=<?php echo $x['id_barang']; ?>&aksi=edit" class="btn btn-warning">Edit</a>
-                                    <a href="barangRoute.php?id=<?php echo $x['id_barang']; ?>&aksi=hapus" class="btn btn-danger">Hapus</a>
+                                        <a
+                                            href="barangEdit.php?id=<?php echo $x['id_barang']; ?>&aksi=edit"
+                                            class="btn btn-warning">Edit</a>
+                                        <a
+                                            href="barangRoute.php?id=<?php echo $x['id_barang']; ?>&aksi=hapus"
+                                            class="btn btn-danger">Hapus</a>
 
                                     </td>
                                 </tr>
@@ -178,7 +190,10 @@ $koneksi = $db->koneksi();
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="barangRoute.php?aksi=tambah" method="post" enctype="multipart/form-data">
+                        <form
+                            action="barangRoute.php?aksi=tambah"
+                            method="post"
+                            enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="fakultas">Pilih Kategori Barang</label>
                                 <select name="id_kat_barang" class="form-control" id="fakultas">
@@ -197,6 +212,10 @@ $koneksi = $db->koneksi();
                                     name="nama_barag"
                                     required="required">
                                 <small id="fakultasHelp" class="form-text text-muted">Masukkan Nama Barang.</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="editor1">Deskripsi Barang</label>
+                                <textarea class="form-control" name="deskripsi_barang" id="editor1"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="stok_barang">Stok Barang</label>
@@ -222,7 +241,12 @@ $koneksi = $db->koneksi();
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlFile1">Gambar Barang</label>
-                                <input type="file" name="foto[]" class="form-control-file" id="exampleFormControlFile1" multiple>
+                                <input
+                                    type="file"
+                                    name="foto[]"
+                                    class="form-control-file"
+                                    id="exampleFormControlFile1"
+                                    multiple="multiple">
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -239,6 +263,11 @@ $koneksi = $db->koneksi();
         <!-- Bootstrap core JavaScript -->
         <script src="../assets/vendor/jquery/jquery.min.js"></script>
         <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script>
+            // Replace the <textarea id="editor1"> with a CKEditor 4 instance, using default
+            // configuration.
+            CKEDITOR.replace('editor1');
+        </script>
 
     </body>
 

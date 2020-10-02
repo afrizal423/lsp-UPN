@@ -10,6 +10,7 @@ if ($aksi == "tambah") {
         'nama_barag' => $_POST['nama_barag'],
         'stok_barang' => $_POST['stok_barang'],
         'harga_barang' => $_POST['harga_barang'],
+        'deskripsi_barang' => $_POST['deskripsi_barang'],
     );
     // $jumlahFile = $_FILES['foto']['name'];
     // echo json_encode($jumlahFile);
@@ -25,6 +26,7 @@ if ($aksi == "tambah") {
         'stok_barang' => $_POST['stok_barang'],
         'harga_barang' => $_POST['harga_barang'],
         'foto_lama' => $_POST['old_foto'],
+        'deskripsi_barang' => $_POST['deskripsi_barang'],
     );
     $br->update($data);
     // echo json_encode($data);

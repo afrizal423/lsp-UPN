@@ -54,7 +54,7 @@ class Barang extends database
                     $x = date('dmY').'-'.$string;
                     move_uploaded_file($tmp, '../assets/img/'.$x);                    
                     // echo json_encode($data);
-                    mysqli_query($this->koneksi(),"INSERT INTO barang VALUES(NULL, '".$data['id_kat_barang']."', '".$data['nama_barag']."',  '".$data['stok_barang']."',  '".$data['harga_barang']."',  '".$x."')");
+                    mysqli_query($this->koneksi(),"INSERT INTO barang VALUES(NULL, '".$data['id_kat_barang']."', '".$data['nama_barag']."' , '".$data['deskripsi_barang']."',  '".$data['stok_barang']."',  '".$data['harga_barang']."',  '".$x."')");
                     header("location:barang.php?alert=simpan");
                 }
             }
@@ -120,7 +120,7 @@ class Barang extends database
              * Jika kosong, maka akan tetap
              */
         // echo $dt['foto_lama'];
-        mysqli_query($this->koneksi(),"update barang set nama_barag='".$dt['nama_barag']."', stok_barang='".$dt['stok_barang']."', harga_barang='".$dt['harga_barang']."', foto_barang='".$dt['foto_lama']."', id_kat_barang='".$dt['id_kat_barang']."'  where id_barang='".$dt['id_barang']."'");
+        mysqli_query($this->koneksi(),"update barang set nama_barag='".$dt['nama_barag']."', deskripsi_barang='".$dt['deskripsi_barang']."' ,stok_barang='".$dt['stok_barang']."', harga_barang='".$dt['harga_barang']."', foto_barang='".$dt['foto_lama']."', id_kat_barang='".$dt['id_kat_barang']."'  where id_barang='".$dt['id_barang']."'");
        header("location:barang.php?alert=simpan");
     }
 }
