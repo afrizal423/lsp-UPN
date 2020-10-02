@@ -123,7 +123,7 @@ if(isset($_POST['update'])) {
 
                     <div class="row my-4">
                         <h3>Keranjang Belanja.</h3>
-                        <table class="table">
+                        <table class="table table-responsive">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
