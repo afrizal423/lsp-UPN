@@ -3,6 +3,7 @@ include 'indexClass.php';
 $idx = new indexClass();
 $koneksi = $idx->koneksi();
 $obj = $idx->lihatBarang($_GET['barang']);
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -59,12 +60,32 @@ $obj = $idx->lihatBarang($_GET['barang']);
                         <li class="nav-item">
                             <a class="nav-link" href="#">About</a>
                         </li>
+                        <?php
+                        if (!isset($_SESSION['status'])) {
+                        ?>
                         <li class="nav-item">
                             <a class="nav-link" href="login.php">Login</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Register</a>
                         </li>
+                        <?php } ?>
+                        <?php
+                        if (isset($_SESSION['status']) && $_SESSION['status']=='login' && $_SESSION['level'] == 'client') {
+                        ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="cart.php">
+                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                Cart</a>
+                        </li>
+                        <?php } ?>
+                        <?php
+                        if (isset($_SESSION['status']) && $_SESSION['status']=='login') {
+                        ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="logout.php">Logout</a>
+                        </li>
+                        <?php } ?>
                     </ul>
                 </div>
             </div>
@@ -101,12 +122,28 @@ $obj = $idx->lihatBarang($_GET['barang']);
                                     <?php echo $idx->rupiah($obj->harga_barang);?>
                                 </h3>
                                 <div class="container">
-                                    Deskripsi: <br> <br>
+                                    Deskripsi:
+                                    <br>
+                                    <br>
                                     <?php echo $obj->deskripsi_barang;?>
                                 </div>
                                 <div class="btn">
-                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                    <br>Beli Sekarang</div>
+                                    <?php
+                                            if (isset($_SESSION['status']) && $_SESSION['status']=='login' && $_SESSION['level'] == 'client') {
+                                            ?>
+                                    <a href="indexRoute.php?barang=<?php echo $idx->encode($obj->id_barang); ?>&aksi=<?php echo $idx->encode('tambahcart'); ?>">
+                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                        <br>Beli Sekarang
+                                    </a>
+                                <?php } else { ?>
+                                    <a href="login.php">
+                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                        <br>Beli Sekarang
+
+                                    </a>
+
+                                    <?php } ?>
+                                </div>
                             </div>
                         </div>
 

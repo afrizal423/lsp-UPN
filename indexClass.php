@@ -26,7 +26,65 @@ class indexClass extends database
         $hasil = mysqli_fetch_object($data);
         return $hasil;
     }
-    
+    public function tmbhcart($obj)
+    {   
+        session_start();
+        // $cart = array();
+        $cart = unserialize(serialize($_SESSION['cart'])); // set $cart as an array, unserialize() converts a string into array
+        // echo json_encode($obj);
+        $datanya = array(
+            'id_barang' => $obj->id_barang,
+            'id_kat_barang' => $obj->id_kat_barang,
+            'nama_barag' => $obj->nama_barag,
+            'stok_barang' => $obj->stok_barang,
+            'harga_barang' => $obj->harga_barang,
+            'jumlah_barang' => 1
+        );
+        $_SESSION['cart'][] = $datanya; // $_SESSION['cart']: set $cart as session variable
+        header("location:cart.php");
+        // unset($_SESSION['cart']);
+        // echo json_encode($cart);
+        # code...
+    }
+    public function delcart($posisi)
+    {
+        session_start();
+        $cart = unserialize(serialize($_SESSION['cart']));
+        // echo json_encode($cart[$posisi]);
+		unset($cart[$posisi]);
+		$cart = array_values($cart);
+		$_SESSION['cart'] = $cart;
+        header('Location: cart.php');
+        
+    }
+    public function checkout($dt)
+    {
+        session_start();
+        $usr = $_SESSION['client'];
+        $data = mysqli_query($this->koneksi(),"select * from client where username_client='$usr'");
+        $usr = mysqli_fetch_object($data);
+        // echo json_encode($usr->id_client);
+        // buat data transaksi
+        mysqli_query($this->koneksi(),"insert into transaksi(id_client, cara_bayar, tanggal_transact, feedback) values('$usr->id_client','".$dt['cara_bayar']."',NULL,'".$dt['feedback']."') ");
+        $data = mysqli_query($this->koneksi(),"select * from transaksi where id_client='$usr->id_client'");
+        $trans = mysqli_fetch_object($data);
+        // echo json_encode($trans->id_transaksi);
+        // echo json_encode($dt);
+        //kita beralih ke cart
+        $cart = unserialize(serialize($_SESSION['cart']));$index=0;
+        for($i=0; $i<count($cart);$i++) {
+            echo $cart[$i]['nama_barag'];
+            mysqli_query($this->koneksi(),"insert into detail_transaksi values(NULL,'".$trans->id_transaksi."','".$cart[$i]['id_barang']."','".$cart[$i]['jumlah_barang']."','".$cart[$i]['jumlah_barang'] * $cart[$i]['harga_barang']."')");
+        }
+        # kita hapus session cartnya
+        unset($_SESSION['cart']);
+
+        /**
+         * Kirim email disini pdfnya, besok sabtu/minggu
+         */
+
+        header("location:index.php");
+    }
 }
 
 
