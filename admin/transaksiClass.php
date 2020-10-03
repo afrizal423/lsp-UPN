@@ -13,7 +13,7 @@ class transaksi extends database
     }
     public function tampil_data()
     {
-        $query=mysqli_query($this->koneksi(),"SELECT * FROM transaksi inner join client using(id_client) where transaksi.status_kirim = 0");
+        $query=mysqli_query($this->koneksi(),"SELECT * FROM transaksi inner join client using(id_client) where transaksi.status_kirim = 0 and transaksi.batal_beli = 0");
         //$data=$mysqli->query($mysqli,$query);
         $hasil = array();
         while($d = mysqli_fetch_array($query)){
@@ -23,7 +23,7 @@ class transaksi extends database
     }
     public function history()
     {
-        $query=mysqli_query($this->koneksi(),"SELECT * FROM transaksi inner join client using(id_client) where transaksi.status_kirim = 1");
+        $query=mysqli_query($this->koneksi(),"SELECT * FROM transaksi inner join client using(id_client) where transaksi.status_kirim = 1 or transaksi.batal_beli = 1");
         //$data=$mysqli->query($mysqli,$query);
         $hasil = array();
         while($d = mysqli_fetch_array($query)){

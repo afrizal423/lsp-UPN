@@ -110,7 +110,7 @@ $koneksi = $db->koneksi();
                                     <td><?php echo $x['cara_bayar']; ?></td>
                                     <td>
                                         <?php 
-                                    if ($x['status_kirim'] == 0) {                                    
+                                    if ($x['status_kirim'] == 0 && $x['batal_beli'] == 0) {                                    
                                     ?>
                                         <div class="alert alert-warning" role="alert">
                                             Belum Dikirim
@@ -118,6 +118,10 @@ $koneksi = $db->koneksi();
                                     <?php } elseif($x['status_kirim'] == 1){?>
                                         <div class="alert alert-success" role="alert">
                                             Sudah Dikirim.
+                                        </div>
+                                        <?php } elseif($x['batal_beli'] == 1){?>
+                                        <div class="alert alert-danger" role="alert">
+                                            Belanjaan Dibatalkan.
                                         </div>
                                         <?php } ?>
                                     </td>

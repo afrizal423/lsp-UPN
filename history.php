@@ -129,7 +129,8 @@ if (!isset($_SESSION['status']) && $_SESSION['status']!='login' && $_SESSION['le
                     <div class=" my-4">
                         <h5>History Belanja</h5>
                         <!-- tambah kategori -->
-                        <!-- <a href="historytransaksi.php" class="btn btn-primary float-right">History Transaksi</a> -->
+                        <!-- <a href="historytransaksi.php" class="btn btn-primary float-right">History
+                        Transaksi</a> -->
 
                         <table class="table table-responsive table-hover" width="100%">
                             <thead>
@@ -153,7 +154,7 @@ if (!isset($_SESSION['status']) && $_SESSION['status']!='login' && $_SESSION['le
                                     <td><?php echo $x['cara_bayar']; ?></td>
                                     <td>
                                         <?php 
-                                    if ($x['status_kirim'] == 0) {                                    
+                                    if ($x['status_kirim'] == 0 && $x['batal_beli'] == 0) {                                    
                                     ?>
                                         <div class="alert alert-warning" role="alert">
                                             Belum Dikirim
@@ -162,16 +163,24 @@ if (!isset($_SESSION['status']) && $_SESSION['status']!='login' && $_SESSION['le
                                         <div class="alert alert-success" role="alert">
                                             Sudah Dikirim.
                                         </div>
+                                    <?php } elseif($x['batal_beli'] == 1){?>
+                                        <div class="alert alert-danger" role="alert">
+                                            Belanjaan Dibatalkan.
+                                        </div>
                                         <?php } ?>
                                     </td>
 
                                     <td>
                                         <a
-                                            href="transaksiDetail.php?id=<?php echo $x['id_transaksi']; ?>"
+                                            href="transaksiDetail.php?id=<?php echo $coded->encrypt($x['id_transaksi'],$key); ?>"
                                             class="btn btn-primary">Lihat</a>
-                                            <a
+                                        <?php 
+                                    if ($x['status_kirim'] == 1) {                                    
+                                    ?>
+                                        <a
                                             href="printpdf.php?id=<?php echo $coded->encrypt($x['id_transaksi'],$key); ?>"
                                             class="btn btn-primary">PDF</a>
+                                        <?php } ?>
 
                                     </td>
                                 </tr>

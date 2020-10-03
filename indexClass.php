@@ -86,7 +86,7 @@ class indexClass extends database
         // echo json_encode($usr->id_client);
         // buat data transaksi
         mysqli_query($this->koneksi(),"insert into transaksi(id_client, cara_bayar, tanggal_transact, feedback) values('$usr->id_client','".$dt['cara_bayar']."','".date("Y-m-d H:i:s")."','".$dt['feedback']."') ");
-        $data = mysqli_query($this->koneksi(),"select * from transaksi where id_client='$usr->id_client'");
+        $data = mysqli_query($this->koneksi(),"select * from transaksi where id_client='$usr->id_client' order by tanggal_transact DESC limit 1");
         $trans = mysqli_fetch_object($data);
         // echo json_encode($trans->id_transaksi);
         // echo json_encode($dt);
@@ -119,6 +119,16 @@ class indexClass extends database
         return $hasil;
     }
     public function listbelanjaanpdf($id)
+    {
+        $query=mysqli_query($this->koneksi(),"SELECT * FROM detail_transaksi inner join transaksi using(id_transaksi) inner join barang using(id_barang) inner join client using(id_client) where detail_transaksi.id_transaksi = $id");
+        //$data=$mysqli->query($mysqli,$query);
+        $hasil = array();
+        while($d = mysqli_fetch_array($query)){
+            $hasil[] = $d;
+        }
+        return $hasil;
+    }
+    public function showbelanjaan($id)
     {
         $query=mysqli_query($this->koneksi(),"SELECT * FROM detail_transaksi inner join transaksi using(id_transaksi) inner join barang using(id_barang) inner join client using(id_client) where detail_transaksi.id_transaksi = $id");
         //$data=$mysqli->query($mysqli,$query);
