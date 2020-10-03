@@ -12,6 +12,26 @@ class indexClass extends database
         }
         return $hasil;
     }
+    public function listkategori()
+    {
+        # code...
+        $query=mysqli_query($this->koneksi(),"SELECT * FROM kategori_barang");
+        $hasil = array();
+        while($d = mysqli_fetch_array($query)){
+            $hasil[] = $d;
+        }
+        return $hasil;
+
+    }
+    public function lihatkategori($id)
+    {
+        $query=mysqli_query($this->koneksi(),"SELECT * FROM barang where id_kat_barang='$id'");
+        $hasil = array();
+        while($d = mysqli_fetch_array($query)){
+            $hasil[] = $d;
+        }
+        return $hasil;
+    }
     function rupiah($angka){
 	
         $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
