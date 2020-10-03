@@ -1,8 +1,13 @@
 <?php
 include 'indexClass.php';
+include 'config/coded.php';
+
 $idx = new indexClass();
+$coded = new Coded();
 $koneksi = $idx->koneksi();
 $obj = $idx->lihatBarang($_GET['barang']);
+$key = 'afrizal muhammad yasin';
+
 session_start();
 ?>
 
@@ -100,9 +105,14 @@ session_start();
 
                     <h1 class="my-4">OSS LSP</h1>
                     <div class="list-group">
-                        <a href="#" class="list-group-item">Kategori 1</a>
-                        <a href="#" class="list-group-item">Kategori 2</a>
-                        <a href="#" class="list-group-item">Kategori 3</a>
+                    <?php 
+                            $no = 1;
+                            foreach($idx->listkategori() as $x){
+                            ?>
+                        <a
+                            href="index.php?kategori=<?php echo $coded->encrypt($x['id_kat_barang'],$key) ?>"
+                            class="list-group-item"><?php echo $x['nama_kategori'];?></a>
+                        <?php } ?>
                     </div>
 
                 </div>
