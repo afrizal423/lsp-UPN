@@ -124,11 +124,8 @@ $koneksi = $db->koneksi();
 
                                     <td>
                                         <a
-                                            href="barangEdit.php?id=<?php echo $x['id_barang']; ?>&aksi=edit"
-                                            class="btn btn-warning">Edit</a>
-                                        <a
-                                            href="barangRoute.php?id=<?php echo $x['id_barang']; ?>&aksi=hapus"
-                                            class="btn btn-danger">Hapus</a>
+                                            href="printpdf.php?id=<?php echo $x['id_transaksi']; ?>"
+                                            class="btn btn-primary">PDF</a>
 
                                     </td>
                                 </tr>

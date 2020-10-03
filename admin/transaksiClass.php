@@ -33,7 +33,7 @@ class transaksi extends database
     }
     public function listbelanjaan($id)
     {
-        $query=mysqli_query($this->koneksi(),"SELECT * FROM detail_transaksi inner join transaksi using(id_transaksi) inner join barang using(id_barang) where detail_transaksi.id_transaksi = $id");
+        $query=mysqli_query($this->koneksi(),"SELECT * FROM detail_transaksi inner join transaksi using(id_transaksi) inner join barang using(id_barang) inner join client using(id_client) where detail_transaksi.id_transaksi = $id");
         //$data=$mysqli->query($mysqli,$query);
         $hasil = array();
         while($d = mysqli_fetch_array($query)){

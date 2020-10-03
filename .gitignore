@@ -1,4 +1,6 @@
 node_modules
 hash.php
 vendor/*
-composer*
+# composer*
+admin/temp/pdf/*
+admin/assets/*
