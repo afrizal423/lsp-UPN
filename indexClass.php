@@ -105,6 +105,29 @@ class indexClass extends database
 
         header("location:index.php");
     }
+
+    public function listbelanjaan($id)
+    {
+        $data = mysqli_query($this->koneksi(),"select * from client where username_client='$id'");
+        $usr = mysqli_fetch_object($data);
+        $query=mysqli_query($this->koneksi(),"SELECT * FROM transaksi where id_client = $usr->id_client");
+        //$data=$mysqli->query($mysqli,$query);
+        $hasil = array();
+        while($d = mysqli_fetch_array($query)){
+            $hasil[] = $d;
+        }
+        return $hasil;
+    }
+    public function listbelanjaanpdf($id)
+    {
+        $query=mysqli_query($this->koneksi(),"SELECT * FROM detail_transaksi inner join transaksi using(id_transaksi) inner join barang using(id_barang) inner join client using(id_client) where detail_transaksi.id_transaksi = $id");
+        //$data=$mysqli->query($mysqli,$query);
+        $hasil = array();
+        while($d = mysqli_fetch_array($query)){
+            $hasil[] = $d;
+        }
+        return $hasil;
+    }
 }
 
 

@@ -76,6 +76,11 @@ session_start();
                         if (isset($_SESSION['status']) && $_SESSION['status']=='login' && $_SESSION['level'] == 'client') {
                         ?>
                         <li class="nav-item">
+                            <a class="nav-link" href="history.php">
+                                <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                                History Belanja</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="cart.php">
                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                 Cart</a>
@@ -102,13 +107,15 @@ session_start();
 
                     <h1 class="my-4">OSS LSP</h1>
                     <div class="list-group">
-                    <small>Kategori :</small>
-                    <?php 
+                        <small>Kategori :</small>
+                        <?php 
                             $no = 1;
                             foreach($idx->listkategori() as $x){
                             ?>
-                        <a href="index.php?kategori=<?php echo $coded->encrypt($x['id_kat_barang'],$key) ?>" class="list-group-item"><?php echo $x['nama_kategori'];?></a>
-                    <?php } ?>
+                        <a
+                            href="index.php?kategori=<?php echo $coded->encrypt($x['id_kat_barang'],$key) ?>"
+                            class="list-group-item"><?php echo $x['nama_kategori'];?></a>
+                        <?php } ?>
                     </div>
 
                 </div>
@@ -133,7 +140,7 @@ session_start();
                     class="carousel-control-next" href="#carouselExampleIndicators" role="button"
                     data-slide="next"> <span class="carousel-control-next-icon"
                     aria-hidden="true"></span> <span class="sr-only">Next</span> </a> </div> -->
-                    <?php
+                <?php
                     if(isset($_GET['kategori'])) {
                         $temp = $idx->lihatkategori($coded->decrypt($_GET['kategori'],$key));
                         $id=$coded->decrypt($_GET['kategori'],$key);
@@ -184,15 +191,13 @@ session_start();
                                                     <br>Beli Sekarang
                                                 </a>
                                             </small>
-                                            <?php } else { ?>
-                                                <small class="text-muted">
-                                                <a
-                                                    href="login.php">
+                                        <?php } else { ?>
+                                            <small class="text-muted">
+                                                <a href="login.php">
                                                     <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                                     <br>Beli Sekarang
                                                 </a>
                                             </small>
-
 
                                             <?php } ?>
 
