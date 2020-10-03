@@ -11,6 +11,7 @@ if(isset($_POST['update'])) {
        $cart[$i]['jumlah_barang'] = $arrQuantity[$i];
     }
     $_SESSION['cart'] = $cart;
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
   }
   $cart = unserialize(serialize($_SESSION['cart']));
   if (count($cart) == 0) {

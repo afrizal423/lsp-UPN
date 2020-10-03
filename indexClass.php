@@ -85,7 +85,7 @@ class indexClass extends database
         $usr = mysqli_fetch_object($data);
         // echo json_encode($usr->id_client);
         // buat data transaksi
-        mysqli_query($this->koneksi(),"insert into transaksi(id_client, cara_bayar, tanggal_transact, feedback) values('$usr->id_client','".$dt['cara_bayar']."',NULL,'".$dt['feedback']."') ");
+        mysqli_query($this->koneksi(),"insert into transaksi(id_client, cara_bayar, tanggal_transact, feedback) values('$usr->id_client','".$dt['cara_bayar']."','".date("Y-m-d H:i:s")."','".$dt['feedback']."') ");
         $data = mysqli_query($this->koneksi(),"select * from transaksi where id_client='$usr->id_client'");
         $trans = mysqli_fetch_object($data);
         // echo json_encode($trans->id_transaksi);
