@@ -48,7 +48,9 @@ class transaksi extends database
         $coded = new Coded();
         $key = 'afrizal muhammad yasin';
         mysqli_query($this->koneksi(),"update transaksi set status_kirim='".$dt['status_kirim']."' where id_transaksi='".$dt['id_transaksi']."' ");
-         // To send HTML mail, the Content-type header must be set
+        $data = mysqli_query($this->koneksi(),"select * from transaksi where id_transaksi='".$dt['id_transaksi']."' inner join client using(id_client) order by transaksi.tanggal_transact DESC limit 1");
+        $trans = mysqli_fetch_object($data);
+        // To send HTML mail, the Content-type header must be set
         $headers  = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
          
@@ -65,9 +67,9 @@ class transaksi extends database
          // $message .= '<h1><b>INI PERCOBAAN</b></h1>';
         $message .= $td;
         $message .= '</body></html>';
- 
-        $to = $usr->email;
-        $subject = "Status pengiriman barang dari belanjaan ".$usr->nama_client."";
+        
+        $to = $trans->email;
+        $subject = "Status pengiriman barang dari belanjaan ".$trans->nama_client."";
         mail($to, $subject, $message, $headers);
     }
     
