@@ -109,7 +109,7 @@ class indexClass extends database
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
         
         // Create email headers
-        $from = 'krs@bosku.com';
+        $from = 'AfrizalMY <no-reply@afrizalmy.com>';
         $headers .= 'From: '.$from."\r\n".
             'Reply-To: '.$from."\r\n" .
             'X-Mailer: PHP/' . phpversion();
