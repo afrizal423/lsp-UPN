@@ -35,6 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if (password_verify($password, $bcrypt)) {
                     # code...
                     // jika true maka akan membuat session untuk username yang diinputkan login,
+                    $_SESSION['nama']=$datanya['nama_client'];
                     $_SESSION['client']=$username;
                     // deklarasikan status diberi login untuk dicek nanti apakah true or false
                     $_SESSION['status'] = "login";

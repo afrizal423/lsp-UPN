@@ -103,6 +103,29 @@ class indexClass extends database
          * Kirim email disini pdfnya, besok sabtu/minggu
          */
 
+        
+        // To send HTML mail, the Content-type header must be set
+        $headers  = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        
+        // Create email headers
+        $from = 'krs@bosku.com';
+        $headers .= 'From: '.$from."\r\n".
+            'Reply-To: '.$from."\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+        $td = '<p>Halo ,</p>
+        <p>Terima kasih telah berbelanja di OSS LSP.<br />Silahkan lihat menu <a href="https://lsp.zalabs.my.id/history.php">history belanja</a>, untuk memastikan belanjaan anda sudah terkirim <br />maupun anda bisa membatalkan pesanan jika barang tersebut belum terkirim oleh kami.</p>
+        <p>Best regard,<br />Admin OSS LSP</p>';
+            // Compose a simple HTML email message
+        $message = '<html><body>';
+        // $message .= '<h1><b>INI PERCOBAAN</b></h1>';
+        $message .= $td;
+        $message .= '</body></html>';
+
+        $to = $usr->email;
+        $subject = "Pembelian barang dari '".$usr->nama_client."'";
+        mail($to, $subject, $message, $headers);
+
         header("location:index.php");
     }
 

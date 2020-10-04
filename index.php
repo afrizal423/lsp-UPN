@@ -41,7 +41,7 @@ session_start();
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="#">OSS LSP</a>
+                <a class="navbar-brand" href="#">OSS LSP</a>               
                 <button
                     class="navbar-toggler"
                     type="button"
@@ -106,7 +106,12 @@ session_start();
                 <div class="col-lg-3">
 
                     <h1 class="my-4">OSS LSP</h1>
+                    <?php
+                        if (isset($_SESSION['status']) && $_SESSION['status']=='login' && $_SESSION['level'] == 'client') {
+                        echo "Selamat datang ",$_SESSION['nama'];
+                        } ?>
                     <div class="list-group">
+                    <br>
                         <small>Kategori :</small>
                         <?php 
                             $no = 1;
