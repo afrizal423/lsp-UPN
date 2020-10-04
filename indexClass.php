@@ -114,7 +114,7 @@ class indexClass extends database
             'Reply-To: '.$from."\r\n" .
             'X-Mailer: PHP/' . phpversion();
         $td = '<p>Halo ,</p>
-        <p>Terima kasih telah berbelanja di OSS LSP.<br />Silahkan lihat menu <a href="https://lsp.zalabs.my.id/history.php">history belanja</a>, untuk memastikan belanjaan anda sudah terkirim <br />maupun anda bisa membatalkan pesanan jika barang tersebut belum terkirim oleh kami.</p>
+        <p>Terima kasih telah berbelanja di OSS LSP.<br />Silahkan lihat menu <a href="https://lsp.zalabs.my.id/history.php">history belanja</a>(Login required), untuk memastikan belanjaan anda sudah terkirim <br />maupun anda bisa membatalkan pesanan jika barang tersebut belum terkirim oleh kami.</p>
         <p>Best regard,<br />Admin OSS LSP</p>';
             // Compose a simple HTML email message
         $message = '<html><body>';
@@ -123,7 +123,7 @@ class indexClass extends database
         $message .= '</body></html>';
 
         $to = $usr->email;
-        $subject = "Pembelian barang dari '".$usr->nama_client."'";
+        $subject = "Pembelian barang dari ".$usr->nama_client."";
         mail($to, $subject, $message, $headers);
 
         header("location:index.php");

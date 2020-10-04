@@ -158,7 +158,7 @@ if(isset($_POST['update'])) {
                                 <label for="exampleFormControlSelect1">Batal pesan?</label>
                                 <select name="batal_beli" class="form-control" id="exampleFormControlSelect1">
                                     <option>--- Silahkan Pilih ---</option>
-                                    <option value="<?php echo $coded->encrypt(" 1",$key) ?>"="1",$key) ?>"">Ya, saya membatalkan pesanan ini.</option>
+                                    <option value="<?php echo $coded->encrypt("1",$key) ?>">Ya, saya membatalkan pesanan ini.</option>
                                 </select>
                             </div>
                             <input type="hidden" name="update">

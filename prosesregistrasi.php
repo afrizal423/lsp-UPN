@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $message .= '</body></html>';
 
         $to = $email;
-        $subject = "Selamat datang '".$nama."'";
+        $subject = "Selamat datang ".$nama."";
         mail($to, $subject, $message, $headers);
             echo '<script language="javascript">alert("Sukses mendaftar !"); document.location="/";</script>';
         } else {
