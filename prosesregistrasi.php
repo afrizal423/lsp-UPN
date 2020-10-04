@@ -46,6 +46,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     // INSERT INTO `client` (`id_client`, `nama_client`, `username_client`, `password`, `email`, `ttl`, `gender`, `alamat`, `kota`, `no_hp`, `paypal_id`) VALUES (NULL, 'afrizal', 'afrizal', '$2y$10$uhW9G3veqmkJErfcNZuk8e6s3sd1tUA4wSipVIys9aZ7kb3Hc1IEe', 'ijal@ijal.com', '2020-10-14', 'L', 'sby', 'Sby', '0', '1');
     if ($hasil){
+            // To send HTML mail, the Content-type header must be set
+        $headers  = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        
+        // Create email headers
+        $from = 'krs@bosku.com';
+        $headers .= 'From: '.$from."\r\n".
+            'Reply-To: '.$from."\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+        $td = '<p>Halo ,</p>
+        <p>Selamat datang di Online Shop Kesehatan OSS LSP.<br />Selamat berbelanja.</p>
+        <p>Best regard,<br />Admin OSS LSP</p>';
+            // Compose a simple HTML email message
+        $message = '<html><body>';
+        // $message .= '<h1><b>INI PERCOBAAN</b></h1>';
+        $message .= $td;
+        $message .= '</body></html>';
+
+        $to = $email;
+        $subject = "Selamat datang '".$nama."'";
+        mail($to, $subject, $message, $headers);
             echo '<script language="javascript">alert("Sukses mendaftar !"); document.location="/";</script>';
         } else {
             // echo("Error description: " . $koneksi -> error);
