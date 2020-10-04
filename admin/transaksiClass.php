@@ -48,7 +48,7 @@ class transaksi extends database
         $coded = new Coded();
         $key = 'afrizal muhammad yasin';
         mysqli_query($this->koneksi(),"update transaksi set status_kirim='".$dt['status_kirim']."' where id_transaksi='".$dt['id_transaksi']."' ");
-        $data = mysqli_query($this->koneksi(),"select * from transaksi where id_transaksi='".$dt['id_transaksi']."' inner join client using(id_client) order by transaksi.tanggal_transact DESC limit 1");
+        $data = mysqli_query($this->koneksi(),"select * from transaksi inner join client using(id_client) where id_transaksi='".$dt['id_transaksi']."' order by transaksi.tanggal_transact DESC limit 1");
         $trans = mysqli_fetch_object($data);
         // To send HTML mail, the Content-type header must be set
         $headers  = 'MIME-Version: 1.0' . "\r\n";
@@ -59,8 +59,9 @@ class transaksi extends database
         $headers .= 'From: '.$from."\r\n".
              'Reply-To: '.$from."\r\n" .
              'X-Mailer: PHP/' . phpversion();
+        $idnya = $coded->encrypt($dt['id_transaksi'],$key);
         $td = '<p>Halo ,</p>
-         <p>Terima kasih telah berbelanja di OSS LSP.<br />Barang pesanan anda sudah kami kirimkan sesuai alamat pada akun anda.<br />Untuk mendapatkan laporan/nota, silahkan kunjungi <a href="https://lsp.zalabs.my.id/printpdf.php?id="'.$coded->encrypt($dt['id_transaksi'],$key).'"" target="_blank">link ini</a>.</p>
+         <p>Terima kasih telah berbelanja di OSS LSP.<br />Barang pesanan anda sudah kami kirimkan sesuai alamat pada akun anda.<br />Untuk mendapatkan laporan/nota, silahkan kunjungi <a href="https://lsp.zalabs.my.id/printpdf.php?id='.$idnya.' target="_blank">link ini</a>.</p>
          <p>Best regard,<br />Admin OSS LSP</p>';
              // Compose a simple HTML email message
         $message = '<html><body>';
