@@ -49,26 +49,26 @@ class transaksi extends database
         $key = 'afrizal muhammad yasin';
         mysqli_query($this->koneksi(),"update transaksi set status_kirim='".$dt['status_kirim']."' where id_transaksi='".$dt['id_transaksi']."' ");
          // To send HTML mail, the Content-type header must be set
-         $headers  = 'MIME-Version: 1.0' . "\r\n";
-         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        $headers  = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
          
          // Create email headers
-         $from = 'AfrizalMY <no-reply@afrizalmy.com>';
-         $headers .= 'From: '.$from."\r\n".
+        $from = 'AfrizalMY <no-reply@afrizalmy.com>';
+        $headers .= 'From: '.$from."\r\n".
              'Reply-To: '.$from."\r\n" .
              'X-Mailer: PHP/' . phpversion();
-         $td = '<p>Halo ,</p>
+        $td = '<p>Halo ,</p>
          <p>Terima kasih telah berbelanja di OSS LSP.<br />Barang pesanan anda sudah kami kirimkan sesuai alamat pada akun anda.<br />Untuk mendapatkan laporan/nota, silahkan kunjungi <a href="https://lsp.zalabs.my.id/printpdf.php?id="'.$coded->encrypt($dt['id_transaksi'],$key).'"" target="_blank">link ini</a>.</p>
          <p>Best regard,<br />Admin OSS LSP</p>';
              // Compose a simple HTML email message
-         $message = '<html><body>';
+        $message = '<html><body>';
          // $message .= '<h1><b>INI PERCOBAAN</b></h1>';
-         $message .= $td;
-         $message .= '</body></html>';
+        $message .= $td;
+        $message .= '</body></html>';
  
-         $to = $usr->email;
-         $subject = "Status pengiriman barang dari belanjaan ".$usr->nama_client."";
-         mail($to, $subject, $message, $headers);
+        $to = $usr->email;
+        $subject = "Status pengiriman barang dari belanjaan ".$usr->nama_client."";
+        mail($to, $subject, $message, $headers);
     }
     
 }
